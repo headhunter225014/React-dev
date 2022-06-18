@@ -1,4 +1,4 @@
-import React, {StrictMode} from 'react';
+
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from "./components/app/app";
@@ -10,8 +10,7 @@ root.render(
     <div>
         <DevSupport
             ComponentPreviews={ComponentPreviews}
-            useInitialHook={useInitial}
-        >
+            useInitialHook={useInitial}>
             <App/>
         </DevSupport>
     </div>
