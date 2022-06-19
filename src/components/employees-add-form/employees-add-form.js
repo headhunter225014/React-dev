@@ -51,7 +51,7 @@ class EmployeesAddForm extends Component {
 
                     <button type="submit"
                             className="btn btn-outline-light"
-                            disabled={!isEnabled}>Добавить</button>
+                            disabled={!isEnabled}>Add</button>
                 </form>
             </div>
         )
