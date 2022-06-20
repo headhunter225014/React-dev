@@ -5,6 +5,7 @@ import SearchPanel from '../search-panel/search-panel';
 import AppFilter from '../app-filter/app-filter';
 import EmployeesList from '../employees-list/employees-list';
 import EmployeesAddForm from '../employees-add-form/employees-add-form';
+import RowRadioButtonsGroup from "../language-buttons/languageButtons";
 
 import './app.css';
 
@@ -18,10 +19,12 @@ class App extends Component {
                 {name: 'Amara.', salary: 5000, increase: false, rise: false, id: 3}
             ],
             term: '',
-            filter: 'all'
+            filter: 'all',
+            lang: 'en',
         }
         this.maxId = 4;
     }
+
 
     deleteItem = (id) => {
         this.setState(({data}) => {
@@ -47,6 +50,12 @@ class App extends Component {
             }
         });
     }
+
+    changeLangHandler = (lang) => {
+        this.setState({ lang: lang });
+        console.log(lang)
+    }
+
 
     onToggleProp = (id, prop) => {
        this.setState(({data}) => ({
@@ -88,28 +97,38 @@ class App extends Component {
         this.setState({filter})
     }
 
+
+
     render() {
-        const {data, term, filter} = this.state
+        const {data, term, filter, lang} = this.state
         const increased = this.state.data.filter(item => item.increase).length
         const numberOfEmployees = this.state.data.length
         const visibleData = this.filterPost( this.searchEmp(data, term), filter)
+
         return (
             <div className="app">
+                <RowRadioButtonsGroup
+                lang={lang}
+                changeLangHandler={this.changeLangHandler}></RowRadioButtonsGroup>
                 <AppInfo
                 numberOfEmployees={numberOfEmployees}
-                increased={increased}/>
+                increased={increased}
+                lang={lang}/>
 
                 <div className="search-panel">
-                    <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
+                    <SearchPanel onUpdateSearch={this.onUpdateSearch}
+                    lang={lang}/>
                     <AppFilter filter={filter}
-                    onFilterSelect={this.onFilterSelect}/>
+                    onFilterSelect={this.onFilterSelect}
+                    lang={lang}/>
                 </div>
 
                 <EmployeesList
                     data={visibleData}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp}/>
-                <EmployeesAddForm onAdd={this.addItem}/>
+                <EmployeesAddForm onAdd={this.addItem}
+                lang={lang}/>
             </div>
         );
     }

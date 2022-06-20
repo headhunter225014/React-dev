@@ -1,6 +1,33 @@
 import { Component } from 'react';
 
-import './employees-add-form.css';
+//import './employees-add-form.css';
+import './employee-add-form.scss';
+
+const translations = {
+    'en': {
+        'add': 'Add new employee',
+        'name': "Employee's name?",
+        'salary': "Salary in $?",
+        'but': "Add"
+    },
+    'rs': {
+        'add': 'Добавить нового сотрудника',
+        'name': "Имя сотрудника",
+        'salary': "З/П в $",
+        'but': "Добавить"
+    },
+    'sp': {
+        'add': 'Agregar nuevo empleado',
+        'name': "¿Nombre del empleado?",
+        'salary': "Salario en $?",
+        'but': "Agregar"
+    }
+
+}
+
+const getTranslation = (lang, text) => {
+    return translations[lang][text];
+}
 
 class EmployeesAddForm extends Component {
     constructor(props) {
@@ -29,29 +56,30 @@ class EmployeesAddForm extends Component {
     render() {
         const {name, salary} = this.state;
         const isEnabled = name.length >= 2 && salary > 0
+        const {lang} = this.props
 
         return (
             <div className="app-add-form">
-                <h3>Add new employee</h3>
+                <h3>{getTranslation(lang, 'add')}</h3>
                 <form
                     className="add-form d-flex"
                     onSubmit = {this.onSubmit}>
                     <input type="text"
                            className="form-control new-post-label"
-                           placeholder="Employee's name?"
+                           placeholder={getTranslation(lang, 'name')}
                            name="name"
                            value={name}
                            onChange={this.onValueChange}/>
                     <input type="number"
                            className="form-control new-post-label"
-                           placeholder="Salary in $?"
+                           placeholder={getTranslation(lang, 'salary')}
                            name="salary"
                            value={salary}
                            onChange={this.onValueChange}/>
 
                     <button type="submit"
                             className="btn btn-outline-light"
-                            disabled={!isEnabled}>Add</button>
+                            disabled={!isEnabled}>{getTranslation(lang, 'add')}</button>
                 </form>
             </div>
         )
