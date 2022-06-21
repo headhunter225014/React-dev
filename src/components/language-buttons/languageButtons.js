@@ -20,7 +20,7 @@ const translations = {
         'sp': "Испанский"
     },
     'sp': {
-        'language': 'Idioma',
+        'language': 'Espanol',
         'en': "Inglés",
         'rs': "Ruso",
         'sp': "Español"
@@ -54,7 +54,7 @@ class RowRadioButtonsGroup extends Component{
                 >
                     <FormControlLabel value="en" control={<Radio onChange={this.onChange}/>} label="English"/>
                     <FormControlLabel value="rs" control={<Radio onChange={this.onChange}/>} label="Русский"/>
-                    <FormControlLabel value="sp" control={<Radio onChange={this.onChange}/>} label="Idioma"/>
+                    <FormControlLabel value="sp" control={<Radio onChange={this.onChange}/>} label="Espanol"/>
                 </RadioGroup>
             </FormControl>
         );

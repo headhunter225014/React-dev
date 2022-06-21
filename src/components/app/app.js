@@ -107,9 +107,12 @@ class App extends Component {
 
         return (
             <div className="app">
-                <RowRadioButtonsGroup
-                lang={lang}
-                changeLangHandler={this.changeLangHandler}></RowRadioButtonsGroup>
+                <aside>
+                    <RowRadioButtonsGroup
+                        lang={lang}
+                        changeLangHandler={this.changeLangHandler}></RowRadioButtonsGroup>
+                </aside>
+
                 <AppInfo
                 numberOfEmployees={numberOfEmployees}
                 increased={increased}
